@@ -1,0 +1,302 @@
+---
+output:
+  html_document:
+    css: FA9_Rosales.css
+
+title: "FA9 Rosales, Frances Aneth"
+---
+<br>
+<br>
+<!-- DROPDOWN SECTIONS -->
+<div id="right">
+<div class="dropdowny" style=" background-color: transparent;margin-bottom:150px;" >
+
+<button class="dropbtny"  style=" background-color:transparent ; font-family: 'Barlow'; color: #FFBD59; margin-top:-100px;  "> 
+<span style= "">  
+<b style= "margin-top: 500px;margin-left: -50px; color: #66545e;" > ➤ CHOOSE TOPIC HERE! </b>
+</span>
+</button>
+<div class="dropdown-contenty" >
+<div class="dropdown-new" style=" background-color: transparent;">  
+<button class="dropbtny"  style=" background-color:transparent ;color: #aa6f73;"> 
+➤ Problem No.1: <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content-new"  style=" margin-left: 80px; margin-top: -20px;    ">
+<a href="#no1curve" >   &nbsp;&nbsp; No.1 Curve</a>
+<a href="#no1A" >   &nbsp;&nbsp; No.1 :A</a>
+<a href="#no1B" >   &nbsp;&nbsp; No.1 :B</a>
+<a href="#no1C" >   &nbsp;&nbsp; No.1 :C</a>
+<a href="#no1D" >   &nbsp;&nbsp; No.1 :D</a>
+<a href="#no1E" >   &nbsp;&nbsp; No.1 :E</a>
+<a href="#no1F" >   &nbsp;&nbsp; No.1 :F</a>
+<a href="#no1G" >   &nbsp;&nbsp; No.1 :G</a>
+
+</div>
+</div>
+<div class="dropdown-new" style=" background-color: transparent;">  
+<button class="dropbtny"  style=" background-color:transparent ;color: #aa6f73;"> 
+➤ Problem No.2:  <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content-new"  style=" margin-left: 80px; margin-top: -20px;" >
+
+<a href="#no2A" >   &nbsp;&nbsp; No.2 :A</a>
+<a href="#no2B" >   &nbsp;&nbsp; No.2 :B</a>
+
+</div>
+</div>
+</div>
+<div style= " margin-top: -20px;">
+<img src="https://www.feu.edu.ph/wp-content/themes/feu_theme2019/assets/images/logo_white2.png" alt="logo" style= "width: 100%;
+height: auto;max-width: 100px; 
+margin-left:-30px; margin-top: -125px;  -webkit-filter: invert(1);filter: invert(1);" />
+</div>
+</div>
+</div>
+<!-- DROPDOWN SECTIONS -->
+
+<h1 class= "main" style = "margin-top: 50px;">  Problem No.1: </h1>
+An analogue signal received at a detector, measured in microvolts, is normally distributed with mean of 200 and variance of 256. 
+
+<a id="no1curve">
+<h3 class= "main" > Plot of The Normal Distribution</h3>
+</a>
+```{r no1curve, fig.html=TRUE}
+
+
+sd_prob1= sqrt(256)
+mean_prob1=200
+
+curve(dnorm(x, mean_prob1,sd_prob1 ), 150, 250, xlab = "𝜇V", ylab = "y", main = "Normal Distribution of Microvolts")
+x <- qnorm(0.5, mean_prob1, sd_prob1)
+lines(c(x, x), c(0, dnorm(x, mean_prob1, sd_prob1)))
+```
+
+
+<a id="no1A">
+<h4>(a) What is the probability that the signal will exceed 224 𝜇V?  </h4> </a>
+```{r no1A, fig.html=TRUE}
+no1A<- 1 - pnorm(224, mean_prob1, sd_prob1)
+cat("Probability that the signal will exceed 224 𝜇V: ", no1A, "\n")
+
+
+```
+
+```{r no1A_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("a= Probability that the signal will exceed 224 𝜇V:\n", (round(no1A, 4)*100),"%\n or\n",
+                                 round(no1A, 4)), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+
+
+
+<a id="no1B">
+<h4>(b) What is the probability that it will be between 186 and 224 𝜇V?  </h4> 
+</a>
+
+```{r no1B, fig.html=TRUE}
+no1B <- pnorm(224, mean_prob1, sd_prob1) - pnorm(186, mean_prob1, sd_prob1)
+cat("Probability that it will be between 186 and 224 𝜇V: ", no1B, "\n")
+
+
+
+```
+
+
+```{r no1B_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("b= Probability that it will be between 186 and 224 𝜇V:\n", (round(no1B, 4)*100),"%\n or\n",
+                                 round(no1B, 4)), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+
+
+<a id="no1C">
+<h4> (c)What is the micro voltage below which 25% of the signals will be?  </h4> 
+</a>
+
+
+```{r no1C, fig.html=TRUE}
+no1C <- qnorm(0.25, mean_prob1, sd_prob1)
+
+cat("Micro voltage below which 25% of the signals: ", no1C, "𝜇V\n")
+
+
+```
+
+
+```{r no1C_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("c= Micro voltage below which 25% of the signals: :\n", (round(no1C, 4)),"𝜇V\n"), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+
+```
+
+
+
+<a id="no1D">
+<h4> (d)What is the probability that the signal will be less than 240 𝜇V, given that it is larger than 210 𝜇V?   </h4> 
+</a>
+
+
+```{r no1D, fig.html=TRUE}
+
+PofX_240_210 <- (pnorm(240, mean_prob1, sd_prob1) -   pnorm(210, mean_prob1, sd_prob1) )
+PofX_210 <- (1-pnorm(210, mean_prob1, sd_prob1))
+
+no1D <- PofX_240_210 / PofX_210
+
+cat("Probability  that the signal will be less than 240 𝜇V, given that it is larger than 210 𝜇V: ", no1D, "𝜇V\n")
+
+
+```
+
+
+
+```{r no1D_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("P(X < 240 and X > 210) /P(X > 210)\n d=Probability  that the signal will be less than 240 𝜇V,\n given that it is larger than 210 𝜇V:\n", (round(no1D, 4)*100),"%\n or\n",
+                                 round(no1D, 4)), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+
+
+<a id="no1E">
+<h4> (e)Estimate the interquartile range.   </h4> 
+</a>
+
+
+```{r no1E, fig.html=TRUE}
+no1E <- qnorm(0.75, mean_prob1, sd_prob1) - no1C
+cat("Estimate Interquartile Range: ", no1E, "𝜇V\n")
+
+
+
+```
+
+```{r no1E_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("e=Estimate Interquartile Range:\n", (round(no1E, 4)),"\n"), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+
+<a id="no1F">
+<h4> (f)What is the probability that the signal will be less than 220 𝜇V, given that it is larger than 210 𝜇V?   </h4> 
+</a>
+
+```{r no1F, fig.html=TRUE}
+
+
+
+
+PofX_210_220 <- (pnorm(220, mean_prob1,sd_prob1) - pnorm(210, mean_prob1, sd_prob1))
+PofX_210 <- (1-pnorm(210, mean_prob1, sd_prob1))
+
+no1F <- PofX_210_220 / PofX_210
+
+cat("Probability that the signal will be less than 220 𝜇V, given that it is larger than 210 𝜇V: ", no1F, "𝜇V\n")
+
+```
+
+```{r no1F_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("P(X > 210 and X < 220) / P(X > 210)\n f=Probability that the signal will be less than 220 𝜇V,\n given that it is larger than 210 𝜇V:\n", (round(no1F, 4)*100),"%\n or\n",
+                                 round(no1F, 4)), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+<a id="no1G">
+<h4> (g)If we know that a received signal is greater than 200 𝜇V, what is the probability that is in fact greater than 220 𝜇V?   </h4> 
+</a>
+```{r no1G, fig.html=TRUE}
+
+
+PofX_200_220 <- (pnorm(220, mean_prob1,sd_prob1) - pnorm(200, mean_prob1, sd_prob1))
+PofX_200 <- (1-pnorm(200, mean_prob1, sd_prob1))
+
+no1G <- PofX_200_220 / PofX_200
+
+
+cat("Probability that is in fact greater than 220 𝜇V, given we received signal is greater than 200 𝜇V ", no1G, "𝜇V\n")
+
+```
+
+```{r no1G_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("P(X > 200 and X < 220) / P(X > 200)\n g= Probability that the signal will exceed 224 𝜇V:\n", (round(no1A, 4)*100),"%\n or\n",
+                                 round(no1G, 4)), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+
+<h1 class= "main" style = "margin-top: 50px;">  Problem No.2: </h1>
+A manufacturer of a particular type of computer system is interested in improving its customer support services. As a first step, its marketing department has been charged with the responsibility of summarizing the extent of customer problems in terms of system failures. Over a period of six months, customers were surveyed and the amount of downtime (in minutes) due to system failures they had experienced during the previous month was collected. The average downtime was found to be 25 minutes and a variance of 144. If it can be assumed that downtime is normally distributed:  
+
+
+<a id="no2A">
+<h4> (a)Obtain bounds which will include 95% of the downtime of all the customers;   </h4> 
+</a>
+
+```{r no2A, fig.html=TRUE}
+
+mean_prob2 <- 25
+sd_prob2 <- sqrt(144)
+
+initial <- qnorm(0.025, mean_prob2, sd_prob2) 
+final <- qnorm(0.975, mean_prob2, sd_prob2) 
+
+
+# Print the confidence interval
+cat("Bounds which will include 95% of the downtime of all the customers: (", round(initial, 2), ", ", round(final, 2), ")\n")
+
+cat("Wherein,", round(initial, 2), " is the Inial bound located at 2.5% percentile and  ", round(final, 2), "is the final bound located at 97.5% of z-score.\n")
+
+
+
+```
+
+
+```{r no2A_plot, fig.html=TRUE}
+
+
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("Wherein,", round(initial, 2), " is the Inial bound located\n at 2.5% percentile and  ", round(final, 2), " is the final bound located \nat 97.5% of z-score.\n"), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+```
+
+
+<a id="no2B">
+<h4> (b)obtain the bound above which 10% of the downtime is included</h4> 
+</a>
+
+
+```{r no2B, fig.html=TRUE}
+
+
+no2B <- qnorm(0.9, mean_prob2, sd_prob2) 
+no2B
+cat("The bound above which 10% of the downtime is included :", round(no2B, 4), "minutes\n")
+
+
+
+
+```
+
+
+```{r no2B_plot, fig.html=TRUE}
+par(bg = "#d9d1c4")
+plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", axes=FALSE)
+text(x=0.5, y=0.5, labels=paste0("The bound above which 10% of the downtime is included :", round(no2B, 4), "minutes\n"), col="#bb5989", cex=1)
+box(col="#778979", lty="dotted")
+
+```
